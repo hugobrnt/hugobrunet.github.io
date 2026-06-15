@@ -10,6 +10,10 @@ export default defineConfig({
   markdown: {
     remarkPlugins: [remarkMath],
     rehypePlugins: [rehypeKatex],
-    shikiConfig: { theme: 'github-light' }, // code block syntax highlighting (built into Astro)
+    shikiConfig: {
+      // dual themes so code blocks stay readable in both light and dark mode
+      themes: { light: 'github-light', dark: 'github-dark' },
+      defaultColor: false,
+    },
   },
 });

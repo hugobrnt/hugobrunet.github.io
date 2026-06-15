@@ -3,7 +3,7 @@
 // (and optionally a description) and its content via <slot />.
 import '../styles/global.css';
 
-const { title, description = 'Personal site: projects, essays, and CS notes.' } = Astro.props;
+const { title, description = 'Personal site: projects, essays, and CS notes.', wide = false } = Astro.props;
 
 const sections = [
   { href: '/', label: 'about' },
@@ -38,7 +38,7 @@ const current = Astro.url.pathname;
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" />
     <title>{title}</title>
   </head>
-  <body>
+  <body class={wide ? 'wide' : undefined}>
     <header>
       <nav>
         <!-- TODO: change to your name -->

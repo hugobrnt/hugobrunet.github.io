@@ -15,52 +15,57 @@ const recent = all
   .slice(0, 5);
 ---
 
-<Base title="Hugo Brunet">
-  <h2>Hugo Brunet</h2>
-  <p>
-    Welcome to my log book — a place where I write about computer science,
-    share my projects, and explore the intersection of technology, media, and
-    society.
-  </p>
-  <h2>Who I Am</h2>
-  <p>
-    My name is <strong>Hugo Brunet</strong>. I am a Computer Science student at
-    42 Paris. My interests lie at the intersection of artificial intelligence
-    and the media industry.
-  </p>
-  <p>
-    Before joining 42, I spent four years as a Total Video Advertising Manager
-    at France Télévisions Publicité, selling advertising space for France's
-    leading TV broadcaster to the market's two largest media agencies, Publicis
-    and Havas.
-  </p>
-  <p>
-    I hold a Master's degree in Innovation Management (Creative Industries)
-    from Paris 1 Panthéon-Sorbonne, a Master's in Economics and Financial
-    Engineering from Paris Dauphine University, and a Bachelor's degree in
-    Applied Economics, also from Paris Dauphine.
-  </p>
-  <h2>Career Change</h2>
-  <p>
-    Understanding and solving problems is what drives me. Across all my
-    experiences, I kept coming back to the same curiosity: how technology and
-    business intersect. That curiosity pushed me to pivot toward a tech-first
-    career — my goal is to understand how tomorrow's technology works well
-    enough to build applications that are useful to people.
-  </p>
-  <h2>About This Site</h2>
-  <p>This site serves a few purposes:</p>
-  <ul>
-    <li>Discuss the impact of technology and AI on society, advertising, and the media industry</li>
-    <li>Present my personal projects</li>
-    <li>Document what I learn as I study computer science</li>
-  </ul>
-  <h2>Contact Me</h2>
-  <p>
-    You can reach me by <a href="mailto:hugobrunet.dev@gmail.com">email</a> or find me
-    on <a href="https://github.com/hugobrnt">GitHub</a>.
-  </p>
-
-  <h2>Recent</h2>
-  <PostList posts={recent} />
+<Base title="Hugo Brunet" wide>
+  <div class="home-layout">
+    <div class="home-main">
+      <h1>Hugo Brunet</h1>
+      <p>
+        Welcome to my log book — a place where I write about computer science,
+        share my projects, and explore the intersection of technology, media, and
+        society.
+      </p>
+      <h2>Who I Am</h2>
+      <p>
+        My name is <strong>Hugo Brunet</strong>. I am a Computer Science student at
+        42 Paris. My interests lie at the intersection of artificial intelligence
+        and the media industry.
+      </p>
+      <p>
+        Before joining 42, I spent four years as a Total Video Advertising Manager
+        at France Télévisions Publicité, selling advertising space for France's
+        leading TV broadcaster to the market's two largest media agencies, Publicis
+        and Havas.
+      </p>
+      <p>
+        I hold a Master's degree in Innovation Management (Creative Industries)
+        from Paris 1 Panthéon-Sorbonne, a Master's in Economics and Financial
+        Engineering from Paris Dauphine University, and a Bachelor's degree in
+        Applied Economics, also from Paris Dauphine.
+      </p>
+      <h2>Career Change</h2>
+      <p>
+        Understanding and solving problems is what drives me. Across all my
+        experiences, I kept coming back to the same curiosity: how technology and
+        business intersect. That curiosity pushed me to pivot toward a tech-first
+        career — my goal is to understand how tomorrow's technology works well
+        enough to build applications that are useful to people.
+      </p>
+      <h2>About This Site</h2>
+      <p>This site serves a few purposes:</p>
+      <ul>
+        <li>Discuss the impact of technology and AI on society, advertising, and the media industry</li>
+        <li>Present my personal projects</li>
+        <li>Document what I learn as I study computer science</li>
+      </ul>
+      <h2>Contact Me</h2>
+      <p>
+        You can reach me by <a href="mailto:hugobrunet.dev@gmail.com">email</a> or find me
+        on <a href="https://github.com/hugobrnt">GitHub</a>.
+      </p>
+    </div>
+    <aside class="home-recent">
+      <h2>Recent</h2>
+      <PostList posts={recent} />
+    </aside>
+  </div>
 </Base>

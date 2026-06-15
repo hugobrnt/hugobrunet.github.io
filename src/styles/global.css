@@ -45,6 +45,9 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* homepage: wider column to fit the "Recent" sidebar */
+body.wide { max-width: 64rem; }
+
 /* ---- navigation ---- */
 
 nav {
@@ -124,6 +127,25 @@ blockquote {
 }
 
 img { max-width: 100%; height: auto; }
+
+/* ---- homepage layout ---- */
+
+.home-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+
+@media (min-width: 60rem) {
+  .home-layout {
+    grid-template-columns: 1fr 18rem;
+    align-items: start;
+  }
+  .home-recent {
+    position: sticky;
+    top: 2.5rem;
+  }
+}
 
 /* ---- post list ---- */
 

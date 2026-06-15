@@ -1,0 +1,176 @@
+/* ---------------------------------------------------------------
+   Medium-style typography system.
+   Body:     Source Serif 4 (Google Fonts) → Georgia fallback
+   UI/nav:   Inter (Google Fonts) → system-ui fallback
+   Code:     system monospace stack (same as Medium)
+   --------------------------------------------------------------- */
+
+:root {
+  --bg: #ffffff;
+  --ink: rgba(41, 41, 41, 1);     /* Medium's exact body text color */
+  --muted: rgba(117, 117, 117, 1); /* Medium's metadata / secondary text */
+  --link: #1a8917;                 /* Medium's green link color */
+  --rule: #e6e6e6;
+  --code-bg: #f2f2f2;
+
+  /* Font stacks */
+  --serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --sans:  'Inter', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --mono:  ui-monospace, 'SF Mono', 'Cascadia Code', 'Consolas', 'Courier New', monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121212;
+    --ink: rgba(242, 242, 242, 1);
+    --muted: rgba(153, 153, 153, 1);
+    --link: #4db24d;
+    --rule: #2a2a2a;
+    --code-bg: #1e1e1e;
+  }
+}
+
+/* ---- page frame ---- */
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 5rem;
+  max-width: 43rem;         /* Medium's article column is ~680px */
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 1.25rem;       /* Medium uses 21px body; 1.25rem ≈ 20px */
+  line-height: 1.68;        /* Medium's generous line-height */
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- navigation ---- */
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  font-family: var(--sans);
+  font-size: 0.8125rem;     /* 13px — Medium's nav size */
+  font-weight: 500;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+nav a { color: var(--muted); text-decoration: none; letter-spacing: 0.01em; }
+nav a.home { color: var(--ink); margin-right: auto; }
+nav a:hover, nav a[aria-current='page'] { color: var(--ink); }
+
+main { margin-top: 2.5rem; }
+
+/* ---- headings ---- */
+/* Medium uses sans-serif (Inter/Söhne) for headings, not serif */
+
+h1, h2, h3 {
+  font-family: var(--sans);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.016em;
+  margin: 2.25rem 0 0.5rem;
+  color: var(--ink);
+}
+
+h1 { font-size: 2rem; margin-top: 0; }   /* article titles */
+h2 { font-size: 1.375rem; }
+h3 { font-size: 1.125rem; }
+
+/* ---- body text ---- */
+
+p { margin: 0 0 1.25em; }
+
+a { color: inherit; text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; }
+a:hover { text-decoration-color: var(--ink); }
+
+/* post lists: links look like plain text */
+ul.posts a { color: var(--ink); text-decoration: none; }
+ul.posts a:hover { text-decoration: underline; }
+
+hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
+
+blockquote {
+  margin: 1.75rem 0;
+  padding-left: 1.25rem;
+  border-left: 3px solid var(--ink);  /* Medium uses a thick left bar */
+  font-style: italic;
+  color: var(--ink);
+}
+
+img { max-width: 100%; height: auto; }
+
+/* ---- post list ---- */
+
+ul.posts { list-style: none; padding: 0; }
+ul.posts li {
+  display: flex;
+  gap: 1.25rem;
+  align-items: baseline;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+ul.posts time {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  color: var(--muted);
+  white-space: nowrap;
+  padding-top: 0.2em;
+}
+
+/* ---- post metadata ---- */
+
+p.meta {
+  font-family: var(--sans);
+  font-size: 0.8125rem;
+  color: var(--muted);
+  margin-top: -0.25rem;
+  margin-bottom: 2rem;
+  letter-spacing: 0.01em;
+}
+
+/* ---- code ---- */
+
+code {
+  font-family: var(--mono);
+  font-size: 0.85em;
+  background: var(--code-bg);
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+}
+
+pre {
+  background: var(--code-bg) !important;
+  border-radius: 4px;
+  padding: 1.25rem;
+  overflow-x: auto;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin: 1.75rem 0;
+}
+pre code { background: none; padding: 0; font-size: inherit; }
+
+@media (prefers-color-scheme: dark) {
+  pre { filter: invert(0.92) hue-rotate(180deg); }
+}
+
+/* ---- footer ---- */
+
+footer {
+  margin-top: 4rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  color: var(--muted);
+  display: flex;
+  gap: 1.25rem;
+}
+footer a { color: var(--muted); text-decoration: none; }
+footer a:hover { color: var(--ink); }
+footer span { margin-left: auto; }

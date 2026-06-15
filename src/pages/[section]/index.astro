@@ -1,0 +1,28 @@
+---
+// One file, three pages. getStaticPaths tells Astro to build this page
+// once per section: /blog/, /essays/ and /projects/.
+import Base from '../../layouts/Base.astro';
+import PostList from '../../components/PostList.astro';
+import { getCollection } from 'astro:content';
+
+export function getStaticPaths() {
+  return [
+    { params: { section: 'blog' }, props: { heading: 'Blog', intro: 'Notes on computer science, written while learning it.' } },
+    { params: { section: 'essays' }, props: { heading: 'Essays', intro: 'Longer thoughts on anything I find interesting.' } },
+    { params: { section: 'projects' }, props: { heading: 'Projects', intro: 'Things I have built.' } },
+  ];
+}
+
+const { section } = Astro.params;
+const { heading, intro } = Astro.props;
+
+const posts = (await getCollection(section)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<Base title={heading}>
+  <h1>{heading}</h1>
+  <p>{intro}</p>
+  <PostList posts={posts} />
+</Base>

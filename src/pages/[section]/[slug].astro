@@ -1,0 +1,28 @@
+---
+// One file renders every individual post. getStaticPaths lists every
+// post in every section, and Astro builds one HTML page for each,
+// at /<section>/<slug>/.
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const sections = ['blog', 'essays', 'projects'];
+  const paths = [];
+  for (const section of sections) {
+    for (const post of await getCollection(section)) {
+      paths.push({ params: { section, slug: post.id }, props: { post } });
+    }
+  }
+  return paths;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post); // compiles the Markdown body
+const date = post.data.date.toISOString().slice(0, 10);
+---
+
+<Base title={post.data.title} description={post.data.description}>
+  <h1>{post.data.title}</h1>
+  <p class="meta">{date} · {post.collection}</p>
+  <Content />
+</Base>

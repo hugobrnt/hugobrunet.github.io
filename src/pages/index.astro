@@ -1,0 +1,34 @@
+---
+// The homepage. Plain HTML inside the Base layout, plus the five most
+// recent posts pulled from all three sections.
+import Base from '../layouts/Base.astro';
+import PostList from '../components/PostList.astro';
+import { getCollection } from 'astro:content';
+
+const all = [
+  ...(await getCollection('blog')),
+  ...(await getCollection('essays')),
+  ...(await getCollection('projects')),
+];
+const recent = all
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 5);
+---
+
+<Base title="Your Name">
+  <h1>Your Name</h1>
+
+  <!-- TODO: replace this with your own introduction -->
+  <p>
+    Hi, I'm <strong>Your Name</strong>. This is my log book: a place where I
+    publish my projects, write essays about whatever I'm interested in, and
+    document what I learn as I study computer science.
+  </p>
+  <p>
+    You can reach me by <a href="mailto:you@example.com">email</a> or find me
+    on <a href="https://github.com/yourusername">GitHub</a>.
+  </p>
+
+  <h2>Recent</h2>
+  <PostList posts={recent} />
+</Base>

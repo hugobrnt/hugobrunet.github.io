@@ -1,0 +1,60 @@
+---
+// The one HTML shell for the whole site. Every page passes in a title
+// (and optionally a description) and its content via <slot />.
+import '../styles/global.css';
+
+const { title, description = 'Personal site: projects, essays, and CS notes.' } = Astro.props;
+
+const sections = [
+  { href: '/', label: 'about' },
+  { href: '/blog/', label: 'blog' },
+  { href: '/essays/', label: 'essays' },
+  { href: '/projects/', label: 'projects' },
+];
+
+// Highlight the nav link of the section we're currently in.
+const current = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml" />
+    <!-- Medium-style fonts: Source Serif 4 (body) + Inter (UI) -->
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet" />
+	<!-- KaTeX stylesheet: only needed so $math$ renders nicely -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <!-- TODO: change to your name -->
+        <a href="/" class="home">Hugo Brunet's Log Book</a>
+        {sections.map((s) => (
+          <a
+            href={s.href}
+            aria-current={current === s.href || (s.href !== '/' && current.startsWith(s.href)) ? 'page' : undefined}
+          >{s.label}</a>
+        ))}
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer>
+      <!-- TODO: change these links to yours -->
+      <a href="https://github.com/hugobrnt">github</a>
+      <a href="https://www.linkedin.com/in/hugo-brunet-pro">linkedin</a>
+      <span>© {new Date().getFullYear()}</span>
+    </footer>
+  </body>
+</html>

@@ -2,14 +2,23 @@
 // The one HTML shell for the whole site. Every page passes in a title
 // (and optionally a description) and its content via <slot />.
 import '../styles/global.css';
+import { getCollection } from 'astro:content';
 
 const { title, description = 'Personal site: projects, essays, and CS notes.', wide = false } = Astro.props;
 
+// Only show a section's nav link once its collection has at least one post.
+// `about` and `cv` are always visible.
+const counts = {
+  blog: (await getCollection('blog')).length,
+  essays: (await getCollection('essays')).length,
+  projects: (await getCollection('projects')).length,
+};
 const sections = [
   { href: '/', label: 'about' },
-  { href: '/blog/', label: 'blog' },
-  { href: '/essays/', label: 'essays' },
-  { href: '/projects/', label: 'projects' },
+  ...(counts.blog ? [{ href: '/blog/', label: 'blog' }] : []),
+  ...(counts.essays ? [{ href: '/essays/', label: 'essays' }] : []),
+  ...(counts.projects ? [{ href: '/projects/', label: 'projects' }] : []),
+  { href: '/cv', label: 'cv' },
 ];
 
 // Highlight the nav link of the section we're currently in.

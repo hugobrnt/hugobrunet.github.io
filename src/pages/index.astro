@@ -63,9 +63,11 @@ const recent = all
         on <a href="https://github.com/hugobrnt">GitHub</a>.
       </p>
     </div>
-    <aside class="home-recent">
-      <h2>Recent</h2>
-      <PostList posts={recent} />
-    </aside>
+    {recent.length > 0 && (
+      <aside class="home-recent">
+        <h2>Recent</h2>
+        <PostList posts={recent} />
+      </aside>
+    )}
   </div>
 </Base>

@@ -93,7 +93,7 @@ nav a.home::before {
   width: 0.9rem;
   height: 0.9rem;
   border-radius: 50%;
-  background: linear-gradient(135deg, #60a5fa, #1e3a8a); /* light → deep blue */
+  background: linear-gradient(135deg, #4a9bff, #dae4fd); /* light → deep blue */
   flex-shrink: 0;
 }
 nav a:hover,

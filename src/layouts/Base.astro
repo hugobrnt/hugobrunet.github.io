@@ -41,7 +41,7 @@ const current = Astro.url.pathname;
   <body class={wide ? 'wide' : undefined}>
     <header>
       <nav>
-        <img href="/public/icon.jpg">
+      <img src="/public/icon.jpg" alt="Blue circle" width="40" height="40">
         <a href="/" class="home">Hugo Brunet's Log Book</a>
         {sections.map((s) => (
           <a

@@ -226,6 +226,27 @@ img {
   }
 }
 
+/* ---- intro photo ---- */
+
+figure.intro-photo {
+  margin: 0 0 2rem;
+}
+figure.intro-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+}
+figure.intro-photo figcaption {
+  margin-top: 0.6rem;
+  font-family: var(--sans);
+  font-size: 0.8125rem; /* 13px — matches metadata/nav scale */
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--muted);
+  text-align: left;
+}
+
 /* ---- post list ---- */
 
 ul.posts {

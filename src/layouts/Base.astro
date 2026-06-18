@@ -2,24 +2,21 @@
 // The one HTML shell for the whole site. Every page passes in a title
 // (and optionally a description) and its content via <slot />.
 import '../styles/global.css';
-import { getCollection } from 'astro:content';
+import PostList from '../components/PostList.astro';
+import { sectionNames } from '../sections.js';
+import { getAllPosts } from '../posts.js';
 
-const { title, description = 'Personal site: projects, essays, and CS notes.', wide = false } = Astro.props;
+const { title, description = 'Personal site: projects, essays, and CS notes.' } = Astro.props;
 
-// Only show a section's nav link once its collection has at least one post.
-// `about` and `cv` are always visible.
-const counts = {
-  blog: (await getCollection('blog')).length,
-  essays: (await getCollection('essays')).length,
-  projects: (await getCollection('projects')).length,
-};
+// Navbar: `about`, then one link per content folder, then `curriculum`.
 const sections = [
   { href: '/', label: 'about' },
-  ...(counts.blog ? [{ href: '/blog/', label: 'blog' }] : []),
-  ...(counts.essays ? [{ href: '/essays/', label: 'essays' }] : []),
-  ...(counts.projects ? [{ href: '/projects/', label: 'projects' }] : []),
+  ...sectionNames.map((name) => ({ href: `/${name}/`, label: name })),
   { href: '/cv', label: 'curriculum' },
 ];
+
+// The five most recent posts across every section, for the Recent sidebar.
+const recent = (await getAllPosts()).slice(0, 5);
 
 // Highlight the nav link of the section we're currently in.
 const current = Astro.url.pathname;
@@ -47,10 +44,11 @@ const current = Astro.url.pathname;
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" />
     <title>{title}</title>
   </head>
-  <body class={wide ? 'wide' : undefined}>
+  <body>
     <header>
       <nav>
         <a href="/" class="home">Hugo Brunet's Log Book</a>
+        <div class="nav-right">
         {sections.map((s) => (
           <a
             href={s.href}
@@ -66,12 +64,21 @@ const current = Astro.url.pathname;
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" />
           </svg>
         </button>
+        </div>
       </nav>
     </header>
 
-    <main>
-      <slot />
-    </main>
+    <div class="page">
+      <main>
+        <slot />
+      </main>
+      {recent.length > 0 && (
+        <aside class="recent">
+          <h2>Recent</h2>
+          <PostList posts={recent} showSection />
+        </aside>
+      )}
+    </div>
 
     <footer>
       <a href="https://github.com/hugobrnt">github</a>
@@ -85,6 +92,31 @@ const current = Astro.url.pathname;
         const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
         root.dataset.theme = next;
         localStorage.setItem('theme', next);
+      });
+    </script>
+
+    <script>
+      // Wrap each code block and add a copy-to-clipboard button.
+      document.querySelectorAll('main pre').forEach((pre) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'code-block';
+        pre.replaceWith(wrapper);
+        wrapper.appendChild(pre);
+
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'copy-btn';
+        btn.textContent = 'Copy';
+        btn.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(pre.innerText.replace(/\n$/, ''));
+            btn.textContent = 'Copied';
+          } catch {
+            btn.textContent = 'Error';
+          }
+          setTimeout(() => (btn.textContent = 'Copy'), 1500);
+        });
+        wrapper.appendChild(btn);
       });
     </script>
   </body>

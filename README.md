@@ -51,12 +51,14 @@ Every later `git push` deploys automatically (takes ~1 minute).
 
 ```
 astro.config.mjs                  site URL + math/code plugins (15 lines)
-src/content.config.ts             declares the 3 sections + required front-matter
-src/styles/global.css             ALL the styling (~140 lines, no framework)
-src/layouts/Base.astro            the HTML shell: <head>, nav, footer
-src/components/PostList.astro     "date  title" list rows
-src/pages/index.astro             homepage: your intro + 5 recent posts
-src/pages/[section]/index.astro   builds /blog/, /essays/, /projects/
+src/sections.js                   discovers sections from src/content/ folders
+src/posts.js                      all posts across sections, newest first
+src/content.config.ts             one collection per section + required front-matter
+src/styles/global.css             ALL the styling (no framework)
+src/layouts/Base.astro            the HTML shell: <head>, nav, Recent sidebar, footer
+src/components/PostList.astro     "date  title" list rows (+ optional section tag)
+src/pages/index.astro             homepage: your intro
+src/pages/[section]/index.astro   builds one listing page per section
 src/pages/[section]/[slug].astro  builds every individual post page
 src/pages/rss.xml.js              builds /rss.xml
 .github/workflows/deploy.yml      auto-deploy to GitHub Pages on push
@@ -71,8 +73,8 @@ JavaScript is shipped to readers at all.
 
 ## Adding a new section later (e.g. "readings")
 
-1. Add `readings: section('readings')` in `src/content.config.ts`
-2. Create the folder `src/content/readings/`
-3. Add an entry to `getStaticPaths()` in `src/pages/[section]/index.astro`
-   and add `'readings'` to the sections array in `[slug].astro`
-4. Add a nav link in `src/layouts/Base.astro`
+Just create the folder `src/content/readings/` and drop Markdown files in it.
+That's the whole step. Sections are discovered from the folders under
+`src/content/` (see `src/sections.js`), so the new section automatically gets a
+navbar link, a `/readings/` listing page, a page per post, and a spot in the
+`Recent` sidebar and RSS feed — no code changes.

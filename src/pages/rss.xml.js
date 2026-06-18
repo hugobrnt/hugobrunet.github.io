@@ -1,13 +1,9 @@
 // Generates /rss.xml from all posts, so people can subscribe.
 import rss from '@astrojs/rss';
-import { getCollection } from 'astro:content';
+import { getAllPosts } from '../posts.js';
 
 export async function GET(context) {
-  const all = [
-    ...(await getCollection('blog')),
-    ...(await getCollection('essays')),
-    ...(await getCollection('projects')),
-  ].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  const all = await getAllPosts();
 
   return rss({
     title: 'Your Name', // TODO: change

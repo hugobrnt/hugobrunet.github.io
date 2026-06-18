@@ -4,11 +4,11 @@
 // at /<section>/<slug>/.
 import Base from '../../layouts/Base.astro';
 import { getCollection, render } from 'astro:content';
+import { sectionNames } from '../../sections.js';
 
 export async function getStaticPaths() {
-  const sections = ['blog', 'essays', 'projects'];
   const paths = [];
-  for (const section of sections) {
+  for (const section of sectionNames) {
     for (const post of await getCollection(section)) {
       paths.push({ params: { section, slug: post.id }, props: { post } });
     }

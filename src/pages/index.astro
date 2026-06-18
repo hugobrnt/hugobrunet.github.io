@@ -1,77 +1,56 @@
 ---
-// The homepage. Plain HTML inside the Base layout, plus the five most
-// recent posts pulled from all three sections.
+// The homepage. Plain HTML inside the Base layout. (The "Recent" list is now
+// a global sidebar rendered by Base, so it's no longer built here.)
 import Base from '../layouts/Base.astro';
-import PostList from '../components/PostList.astro';
-import { getCollection } from 'astro:content';
-
-const all = [
-  ...(await getCollection('blog')),
-  ...(await getCollection('essays')),
-  ...(await getCollection('projects')),
-];
-const recent = all
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 5);
 ---
 
-<Base title="Hugo Brunet" wide>
-  <div class="home-layout">
-    <div class="home-main">
-      <h2>Hugo Brunet</h2>
-      <p>
-        Welcome to my log book — a place where I write about computer science,
-        share my projects, and explore the relations between technology, media, and
-        society.
-      </p>
-      <figure class="intro-photo">
-        <img src="/images/hugo_brunet_profile.JPG" alt="Me among some beautiful flowers." loading="lazy">
-        <figcaption style="display: none">I literally spent two hours looking for a professional shot of myself, which I obviously couldn't. And yes, this one is probably the worst I could have chosen. I'll make sure to wear a suit on my website's next update!</figcaption>
-      </figure>
-      <h2>Who Am I</h2>
-      <p>
-        My name is <strong>Hugo Brunet</strong>. I am a Computer Science student at
-        42 Paris. My interests lie at the intersection of artificial intelligence
-        and the media industry.
-      </p>
-      <p>
-        Before joining 42, I spent three years as an <strong>Advertising Account Executive</strong>
-        at France Télévisions Publicité, selling advertising space for France's
-        leading TV broadcaster to the market's two largest media agencies, Publicis
-        and Havas. Prior to this experience in sales, I had the chance to work as a <strong>Marketing Product Owner Apprentice</strong> for one year, also at France Télévisions Publicité, building major sports and digital offers for advertisers.
-      </p>
-      <p>
-        I hold a <strong>Master's degree in Innovation Management</strong> (Creative Industries)
-        from Paris 1 Panthéon-Sorbonne, a <strong>Master's in Economics and Financial
-        Engineering</strong> from Paris Dauphine University, and a <strong>Bachelor's degree in
-        Applied Economics</strong>, also from Paris Dauphine.
-      </p>
-      <h2>Career Change</h2>
-      <p>
-        Understanding and solving problems is what drives me. Across all my
-        experiences, I kept coming back to the same curiosity: how technology and
-        business intersect. That curiosity pushed me to pivot toward a tech-first
-        career — my goal is to understand how tomorrow's technology works well
-        enough to build applications that are useful to people.
-      </p>
-      <h2>About This Site</h2>
-      <p>This site serves a few purposes:</p>
-      <ul>
-        <li>Discuss the impact of technology and AI on society, advertising, and the media industry</li>
-        <li>Present my personal projects</li>
-        <li>Document what I learn as I study computer science</li>
-      </ul>
-      <h2>Contact Me</h2>
-      <p>
-        You can reach me by <a href="mailto:hugobrunet.dev@gmail.com">email</a> or find me
-        on <a href="https://github.com/hugobrnt">GitHub</a>.
-      </p>
-    </div>
-    {recent.length > 0 && (
-      <aside class="home-recent">
-        <h2>Recent</h2>
-        <PostList posts={recent} />
-      </aside>
-    )}
-  </div>
+<Base title="Hugo Brunet">
+  <h2>Hugo Brunet</h2>
+  <p>
+    Welcome to my log book — a place where I write about computer science,
+    share my projects, and explore the relations between technology, media, and
+    society.
+  </p>
+  <figure class="intro-photo">
+    <img src="/images/hugo_brunet_profile.JPG" alt="Me among some beautiful flowers." loading="lazy">
+    <figcaption style="display: none">I literally spent two hours looking for a professional shot of myself, which I obviously couldn't. And yes, this one is probably the worst I could have chosen. I'll make sure to wear a suit on my website's next update!</figcaption>
+  </figure>
+  <h2>Who Am I</h2>
+  <p>
+    My name is <strong>Hugo Brunet</strong>. I am a Computer Science student at
+    42 Paris. My interests lie at the intersection of artificial intelligence
+    and the media industry.
+  </p>
+  <p>
+    Before joining 42, I spent three years as an <strong>Advertising Account Executive</strong>
+    at France Télévisions Publicité, selling advertising space for France's
+    leading TV broadcaster to the market's two largest media agencies, Publicis
+    and Havas. Prior to this experience in sales, I had the chance to work as a <strong>Marketing Product Owner Apprentice</strong> for one year, also at France Télévisions Publicité, building major sports and digital offers for advertisers.
+  </p>
+  <p>
+    I hold a <strong>Master's degree in Innovation Management</strong> (Creative Industries)
+    from Paris 1 Panthéon-Sorbonne, a <strong>Master's in Economics and Financial
+    Engineering</strong> from Paris Dauphine University, and a <strong>Bachelor's degree in
+    Applied Economics</strong>, also from Paris Dauphine.
+  </p>
+  <h2>Career Change</h2>
+  <p>
+    Understanding and solving problems is what drives me. Across all my
+    experiences, I kept coming back to the same curiosity: how technology and
+    business intersect. That curiosity pushed me to pivot toward a tech-first
+    career — my goal is to understand how tomorrow's technology works well
+    enough to build applications that are useful to people.
+  </p>
+  <h2>About This Site</h2>
+  <p>This site serves a few purposes:</p>
+  <ul>
+    <li>Discuss the impact of technology and AI on society, advertising, and the media industry</li>
+    <li>Present my personal projects</li>
+    <li>Document what I learn as I study computer science</li>
+  </ul>
+  <h2>Contact Me</h2>
+  <p>
+    You can reach me by <a href="mailto:hugobrunet.dev@gmail.com">email</a> or find me
+    on <a href="https://github.com/hugobrnt">GitHub</a>.
+  </p>
 </Base>

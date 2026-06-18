@@ -1,8 +1,9 @@
 ---
 // Renders a list of posts as "date  title" rows.
 // Each post links to /<section>/<slug>/ — the section is the
-// collection the post belongs to (blog, essays or projects).
-const { posts } = Astro.props;
+// collection the post belongs to. Pass `showSection` to tag each row
+// with its section (used by the cross-section "Recent" sidebar).
+const { posts, showSection = false } = Astro.props;
 
 const fmt = (d) => d.toISOString().slice(0, 10); // 2026-06-11
 ---
@@ -12,6 +13,7 @@ const fmt = (d) => d.toISOString().slice(0, 10); // 2026-06-11
     <li>
       <time datetime={fmt(post.data.date)}>{fmt(post.data.date)}</time>
       <a href={`/${post.collection}/${post.id}/`}>{post.data.title}</a>
+      {showSection && <span class="tag">{post.collection}</span>}
     </li>
   ))}
 </ul>

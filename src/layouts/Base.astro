@@ -52,12 +52,14 @@ const recent = allPosts
     <meta name="description" content={description} />
     <link rel="icon" href="/public/icon.jpg" type="jpg" />
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml" />
-    <!-- Medium-style fonts: Source Serif 4 (body) + Inter (UI) -->
+    <!-- Medium-style fonts: Source Serif 4 (body) + Inter (UI) — loaded non-blocking to avoid FOUC on mobile -->
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet" />
-	<!-- KaTeX stylesheet: only needed so $math$ renders nicely -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" />
+	<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,700;1,8..60,400&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+	<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,700;1,8..60,400&display=swap" /></noscript>
+	<!-- KaTeX stylesheet: only needed so $math$ renders nicely — also non-blocking -->
+    <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" /></noscript>
     <title>{title}</title>
   </head>
   <body>

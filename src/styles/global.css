@@ -66,20 +66,6 @@ body {
   }
 }
 
-@media (min-width: 40rem) {
-  nav                           { font-size: 0.9375rem; }
-  footer                        { font-size: 0.875rem; }
-  ul.posts time                 { font-size: 0.875rem; }
-  .tag                          { font-size: 0.8125rem; }
-  .meta-tag                     { font-size: 0.8125rem; }
-  .tag-pill                     { font-size: 0.8125rem; }
-  .back                         { font-size: 0.9375rem; }
-  p.meta                        { font-size: 0.9375rem; }
-  pre                           { font-size: 1rem; }
-  .copy-btn                     { font-size: 0.8125rem; }
-  figure.intro-photo figcaption { font-size: 0.9375rem; }
-}
-
 /* ---- navigation ---- */
 
 nav {
@@ -613,4 +599,22 @@ footer a:hover {
 
 footer span {
   margin-left: auto;
+}
+
+/* ---- tablet/desktop UI scaling (≥ 40rem) ---- */
+/* Base rules above use mobile sizes; this block scales up all small UI text
+   to stay proportional with the 1.5rem body on larger screens. */
+
+@media (min-width: 40rem) {
+  nav                           { font-size: 1rem; }
+  footer                        { font-size: 0.875rem; }
+  ul.posts time                 { font-size: 0.875rem; }
+  .tag                          { font-size: 0.875rem; }
+  .meta-tag                     { font-size: 0.875rem; }
+  .tag-pill                     { font-size: 0.875rem; }
+  .back                         { font-size: 1rem; }
+  p.meta                        { font-size: 1rem; }
+  pre                           { font-size: 1rem; }
+  .copy-btn                     { font-size: 0.875rem; }
+  figure.intro-photo figcaption { font-size: 1rem; }
 }

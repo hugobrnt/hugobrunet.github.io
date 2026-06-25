@@ -55,27 +55,27 @@ The **OSI model** (Open Systems Interconnection) is a conceptual framework propo
 > ### TCP/IP Model
 > The TCP/IP model gives us a more practical alternative to the OSI model to comprehend the Internet. It is comprised of five layers that map to the structure and protocols of the Internet.
 >
-> 1. **Physical** Layer
+> 1. **Physical Layer**
 >
 >       Ex: Wires, Radio Waves
 >       Describes the physical characteristics of communication.
 >
-> 2. **Data Link** Layer
+> 2. **Data Link Layer**
 >
 >       Ex: Ethernet, Token Ring
 >       Splits data into frames to be sent across the connection medium.
 >
-> 3. **Network** Layer
+> 3. **Network Layer**
 >
 >       Ex: IP, ARP, RARP, ICMP
 >       Receives the frames from the Data Link layer and sends them to the correct network address, thanks to protocols such as IP (Internet Protocol).
 >
-> 4. **Transport** Layer
+> 4. **Transport Layer**
 >
 >       Ex: TCP, UDP
 >       Manages end-to-end delivery between hosts. TCP guarantees reliable, ordered delivery; UDP favors speed over reliability.
 >
-> 5. **Application** Layer
+> 5. **Application Layer**
 >
 >       Ex: SSH, DNS, FTP, HTTP, SMTP, telnet
 >       The protocols and services the end user interacts with.

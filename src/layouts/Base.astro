@@ -17,11 +17,25 @@ const sections = [
 
 // The five most recent posts across every section, for the Recent sidebar.
 const allPosts = await getAllPosts();
-const recent = allPosts.slice(0, 5);
 const allTags = [...new Set(allPosts.flatMap(p => p.data.tags ?? []))].sort();
 
 // Highlight the nav link of the section we're currently in.
 const current = Astro.url.pathname;
+
+// Filter Recent: hide the whole section on listing pages, hide only the
+// current post on post pages, so Recent always suggests something new.
+const urlParts = current.split('/').filter(Boolean);
+const currentSection = sectionNames.find(name => name === urlParts[0]);
+const isPostPage = currentSection != null && urlParts.length >= 2;
+const currentSlug = isPostPage ? urlParts[1] : null;
+
+const recent = allPosts
+  .filter(p => {
+    if (!currentSection) return true;
+    if (isPostPage) return !(p.collection === currentSection && p.id === currentSlug);
+    return p.collection !== currentSection;
+  })
+  .slice(0, 5);
 ---
 
 <!doctype html>

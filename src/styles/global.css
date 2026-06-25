@@ -17,6 +17,8 @@
   --code-bg: #f2f2f2;
   --logo-gradient: linear-gradient(135deg, #4a9bff, #dae4fd);
   /* light → deep blue dot */
+  --accent: #4a9bff;
+  /* blue matching the gradient dot — used for tag hover */
 
   /* Font stacks */
   --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
@@ -56,6 +58,26 @@ body {
   /* Medium's generous line-height */
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
+}
+
+@media (max-width: 40rem) {
+  body {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 40rem) {
+  nav                           { font-size: 0.9375rem; }
+  footer                        { font-size: 0.875rem; }
+  ul.posts time                 { font-size: 0.875rem; }
+  .tag                          { font-size: 0.8125rem; }
+  .meta-tag                     { font-size: 0.8125rem; }
+  .tag-pill                     { font-size: 0.8125rem; }
+  .back                         { font-size: 0.9375rem; }
+  p.meta                        { font-size: 0.9375rem; }
+  pre                           { font-size: 1rem; }
+  .copy-btn                     { font-size: 0.8125rem; }
+  figure.intro-photo figcaption { font-size: 0.9375rem; }
 }
 
 /* ---- navigation ---- */
@@ -395,16 +417,15 @@ ul.posts h3 {
 }
 
 .meta-tag:hover {
-  color: var(--link);
-  border-color: var(--link);
+  color: var(--accent);
+  border-color: var(--accent);
 }
 
 /* ---- tags sidebar ---- */
 
 .tags-sidebar {
   margin-top: 2rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--rule);
+  padding-top: 1rem;
 }
 
 .tags-sidebar h2 {
@@ -439,8 +460,8 @@ ul.posts h3 {
 }
 
 .tag-pill:hover {
-  color: var(--link);
-  border-color: var(--link);
+  color: var(--accent);
+  border-color: var(--accent);
 }
 
 /* ---- back link ---- */

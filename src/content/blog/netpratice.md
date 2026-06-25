@@ -1,7 +1,8 @@
 ---
-title: "NetPractice: a 42 project on how the Internet works"
+title: "NetPractice: How Computers Find Each Other on the Internet"
 date: 2026-06-11
-description: "Short Description."
+description: "A walkthrough of IP addressing, subnet masks, and routing
+  — the core concepts behind the 42 NetPractice project."
 tags: ["42"]
 ---
 [`OSI Layers`](#osi--tcpip-layers)
@@ -12,13 +13,6 @@ tags: ["42"]
 [`Routers`](#switches-and-routers)
 [`Default Gateway`](#default-gateways--next-hop)
 [`Next-HOP`](#default-gateways--next-hop)
-
-This project is an introduction to how the Internet works at its core.
-It's worth noting that the purpose of the Internet, like any communication network, is the transmission of data between network users (or nodes).
-
-## Introduction
-
-## Introduction
 
 **NetPractice** is the first networking project of the 42 curriculum. It's a
 hands-on puzzle: you're handed small networks of computers, routers, and

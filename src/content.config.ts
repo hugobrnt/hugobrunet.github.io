@@ -17,6 +17,10 @@ const section = (folder) =>
       title: z.string(),
       date: z.coerce.date(),
       description: z.string().optional(),
+      tags: z.union([z.string(), z.array(z.string())])
+        .transform(v => Array.isArray(v) ? v : [v])
+        .optional()
+        .default([]),
     }),
   });
 

@@ -26,6 +26,20 @@
         "description": {
           "type": "string"
         },
+        "tags": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ],
+          "default": []
+        },
         "$schema": {
           "type": "string"
         }

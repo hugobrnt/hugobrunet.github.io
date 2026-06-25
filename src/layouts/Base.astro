@@ -16,7 +16,9 @@ const sections = [
 ];
 
 // The five most recent posts across every section, for the Recent sidebar.
-const recent = (await getAllPosts()).slice(0, 5);
+const allPosts = await getAllPosts();
+const recent = allPosts.slice(0, 5);
+const allTags = [...new Set(allPosts.flatMap(p => p.data.tags ?? []))].sort();
 
 // Highlight the nav link of the section we're currently in.
 const current = Astro.url.pathname;
@@ -72,12 +74,22 @@ const current = Astro.url.pathname;
       <main>
         <slot />
       </main>
-      {recent.length > 0 && (
-        <aside class="recent">
-          <h2>Recent</h2>
-          <PostList posts={recent} showSection />
-        </aside>
-      )}
+      <div class="sidebar">
+        {recent.length > 0 && (
+          <aside class="recent">
+            <h2>Recent</h2>
+            <PostList posts={recent} showSection />
+          </aside>
+        )}
+        {allTags.length > 0 && (
+          <aside class="tags-sidebar">
+            <h2><a href="/tags/">Tags</a></h2>
+            <div class="tag-cloud">
+              {allTags.map(tag => <a href={`/tags/${tag}/`} class="tag-pill">#{tag}</a>)}
+            </div>
+          </aside>
+        )}
+      </div>
     </div>
 
     <footer>

@@ -32,8 +32,8 @@ Commit, push, done — the site rebuilds and deploys itself.
 ## Running locally
 
 ```bash
-npm install     # once
-npm run dev     # live-reloading preview at http://localhost:4321
+pnpm install    # once
+pnpm run dev    # live-reloading preview at http://localhost:4321
 ```
 
 ## One-time setup (do these now)

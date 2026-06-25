@@ -388,7 +388,7 @@ ul.posts h3 {
 
 /* ---- tag pills on post meta line ---- */
 
-.meta-tag {
+.meta-category {
   display: inline-block;
   font-family: var(--sans);
   font-size: 0.6875rem;
@@ -404,39 +404,39 @@ ul.posts h3 {
   margin-left: 0.4rem;
 }
 
-.meta-tag:hover {
+.meta-category:hover {
   color: var(--accent);
   border-color: var(--accent);
 }
 
 /* ---- tags sidebar ---- */
 
-.tags-sidebar {
+.categories-sidebar {
   margin-top: 2rem;
   padding-top: 1rem;
 }
 
-.tags-sidebar h2 {
+.categories-sidebar h2 {
   margin-top: 0;
 }
 
-.tags-sidebar h2 a {
+.categories-sidebar h2 a {
   color: var(--ink);
   text-decoration: none;
 }
 
-.tags-sidebar h2 a:hover {
+.categories-sidebar h2 a:hover {
   text-decoration: underline;
   text-decoration-color: var(--rule);
 }
 
-.tag-cloud {
+.category-cloud {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
 }
 
-.tag-pill {
+.category-pill {
   font-family: var(--sans);
   font-size: 0.6875rem;
   color: var(--muted);
@@ -447,7 +447,7 @@ ul.posts h3 {
   text-decoration: none;
 }
 
-.tag-pill:hover {
+.category-pill:hover {
   color: var(--accent);
   border-color: var(--accent);
 }

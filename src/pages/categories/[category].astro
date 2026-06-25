@@ -5,21 +5,21 @@ import { getAllPosts } from '../../posts.js';
 
 export async function getStaticPaths() {
   const allPosts = await getAllPosts();
-  const tagMap: Record<string, typeof allPosts> = {};
+  const categoryMap: Record<string, typeof allPosts> = {};
   for (const post of allPosts)
-    for (const tag of post.data.tags ?? []) {
-      if (!tagMap[tag]) tagMap[tag] = [];
-      tagMap[tag].push(post);
+    for (const cat of post.data.categories ?? []) {
+      if (!categoryMap[cat]) categoryMap[cat] = [];
+      categoryMap[cat].push(post);
     }
-  return Object.entries(tagMap).map(([tag, posts]) => ({ params: { tag }, props: { posts } }));
+  return Object.entries(categoryMap).map(([category, posts]) => ({ params: { category }, props: { posts } }));
 }
 
-const { tag } = Astro.params;
+const { category } = Astro.params;
 const { posts } = Astro.props;
 ---
 
-<Base title={`#${tag}`}>
-  <h1>#{tag}</h1>
+<Base title={`#${category}`}>
+  <h1>#{category}</h1>
   <p class="meta">{posts.length} {posts.length === 1 ? 'post' : 'posts'}</p>
   <PostList posts={posts} showSection />
 </Base>

@@ -1,0 +1,45 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getAllPosts } from '../../posts.js';
+
+const allPosts = await getAllPosts();
+const categoryMap: Record<string, number> = {};
+for (const post of allPosts)
+  for (const cat of post.data.categories ?? [])
+    categoryMap[cat] = (categoryMap[cat] ?? 0) + 1;
+
+const categories = Object.entries(categoryMap).sort(([a], [b]) => a.localeCompare(b));
+---
+
+<Base title="All categories">
+  <h1>Categories</h1>
+  <ul class="category-index">
+    {categories.map(([cat, count]) => (
+      <li>
+        <a href={`/categories/${cat}/`} class="category-pill">#{cat}</a>
+        <span class="category-count">{count} {count === 1 ? 'post' : 'posts'}</span>
+      </li>
+    ))}
+  </ul>
+</Base>
+
+<style>
+  .category-index {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+  .category-index li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .category-count {
+    font-family: var(--sans);
+    font-size: 0.8125rem;
+    color: var(--muted);
+  }
+</style>

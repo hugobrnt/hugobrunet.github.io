@@ -3,7 +3,7 @@ title: "NetPractice: How Computers Find Each Other on the Internet"
 date: 2026-06-11
 description: "A walkthrough of IP addressing, subnet masks, and routing
   — the core concepts behind the 42 NetPractice project."
-tags: ["42"]
+categories: ["42"]
 ---
 [`OSI Layers`](#osi--tcpip-layers)
 [`TCP/IP`](#osi--tcpip-layers)

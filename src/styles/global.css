@@ -6,8 +6,10 @@
    --------------------------------------------------------------- */
 
 :root {
+  font-size: 20px;
   --bg: #ffffff;
-  --ink: rgba(41, 41, 41, 1);
+  --ink: rgba(12, 15, 33, 0.9);
+  /* --ink: rgba(41, 41, 41, 1); */
   /* Medium's exact body text color */
   --muted: rgba(117, 117, 117, 1);
   /* Medium's metadata / secondary text */
@@ -30,13 +32,14 @@
 }
 
 :root[data-theme="dark"] {
-  --bg: #121212;
+  --bg: #242220;
   --ink: rgba(242, 242, 242, 1);
   --muted: rgba(153, 153, 153, 1);
   --link: #4db24d;
   --rule: #2a2a2a;
   --code-bg: #1e1e1e;
 }
+
 
 /* ---- page frame ---- */
 
@@ -52,8 +55,7 @@ body {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--serif);
-  font-size: 1.5rem;
-  /* Medium uses 21px body; 1.25rem ≈ 20px */
+  font-size: 1rem;
   line-height: 1.68;
   /* Medium's generous line-height */
   font-weight: 400;
@@ -61,8 +63,8 @@ body {
 }
 
 @media (max-width: 40rem) {
-  body {
-    font-size: 1rem;
+  :root {
+    font-size: 18px;
   }
 }
 
@@ -599,22 +601,4 @@ footer a:hover {
 
 footer span {
   margin-left: auto;
-}
-
-/* ---- tablet/desktop UI scaling (≥ 40rem) ---- */
-/* Base rules above use mobile sizes; this block scales up all small UI text
-   to stay proportional with the 1.5rem body on larger screens. */
-
-@media (min-width: 40rem) {
-  nav                           { font-size: 1rem; }
-  footer                        { font-size: 0.875rem; }
-  ul.posts time                 { font-size: 0.875rem; }
-  .tag                          { font-size: 0.875rem; }
-  .meta-tag                     { font-size: 0.875rem; }
-  .tag-pill                     { font-size: 0.875rem; }
-  .back                         { font-size: 1rem; }
-  p.meta                        { font-size: 1rem; }
-  pre                           { font-size: 1rem; }
-  .copy-btn                     { font-size: 0.875rem; }
-  figure.intro-photo figcaption { font-size: 1rem; }
 }

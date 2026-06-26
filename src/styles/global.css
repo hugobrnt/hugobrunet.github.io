@@ -19,7 +19,8 @@
   --code-bg: #f2f2f2;
   --logo-gradient: linear-gradient(135deg, #4a9bff, #dae4fd);
   /* light → deep blue dot */
-  --accent: #4a9bff;
+  /* --accent: #4a9bff; */
+  --accent: #70affc;
   /* blue matching the gradient dot — used for tag hover */
 
   /* Font stacks */
@@ -196,6 +197,7 @@ main> :first-child {
 
 /* Sidebar (Recent + Tags) stacks below content on narrow screens … */
 .sidebar {
+  max-width: 43rem;
   margin-top: 3rem;
   padding-top: 1.5rem;
   border-top: 1px solid var(--rule);
@@ -203,12 +205,6 @@ main> :first-child {
 
 .recent h2 {
   margin-top: 0;
-}
-
-.recent ul.posts li {
-  flex-wrap: wrap;
-  /* date / title / tag wrap cleanly in the narrow column */
-  gap: 0.5rem;
 }
 
 /* … and becomes a sticky right column once there's room for it */
@@ -231,6 +227,11 @@ main> :first-child {
     position: sticky;
     top: 2.5rem;
     align-self: flex-start;
+  }
+
+  .recent ul.posts li {
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
 }
 

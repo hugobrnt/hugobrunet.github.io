@@ -1,6 +1,6 @@
 ---
 title: "NetPractice: How Computers Find Each Other on the Internet"
-date: 2026-06-11
+date: 2026-06-26
 description: "A walkthrough of IP addressing, subnet masks, and routing
   — the core concepts behind the 42 NetPractice project."
 categories: ["42"]
